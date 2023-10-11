@@ -25,6 +25,11 @@ app.get('/', (req,res) =>{
     res.send('Hello!!')
 })
 
+
+app.get('/profile', (req, res) => {
+    res.send('Profile Page')
+})
+
 //サーバ待機
 app.listen(PORT,HOST, () => {
     console.log(HOST)
