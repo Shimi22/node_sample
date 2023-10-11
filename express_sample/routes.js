@@ -1,42 +1,25 @@
-//express読み込み
+// expressモジュール読み込み
 const express = require('express')
-//dotenv読み込み
-const dotenv = require('dotenv')
+// Routerオブジェクトを生成
+const router = express.Router()
 
-//dotenv設定読み込み
-dotenv.config()
-const HOST = process.env.HOST
-const PORT = process.env.PORT
-
-console.log(HOST)
-console.log(PORT)
-
-//サーバ作成
-const app = express()
-
-//ミドルウェアの設定
-app.use(express.static(__dirname + '/public'))
-
-// URLエンコード
-app.use(express.urlencoded({ extended: true }))
-
-//GETリクエスト処理
-app.get('/', (req,res) =>{
-    //リクエスト処理
+// GETリクエストの処理
+router.get('/', (req, res) => {
+    // リクエストの処理
     console.log(req.body)
     console.log(req.url)
-    console.log(req,query)
+    console.log(req.query)
 
-    //レスポンス処理
-    res.send('Hello!!')
+    // レスポンスの処理
+    res.send('Hello!!!!!!')
 })
 
-app.get('/profile', (req, res) => {
-    res.send('Profile Page')
+router.get('/profile', (req, res) => {
+    res.send('プロフィール')
 })
 
 // POSTリクエスト
-app.post('/auth', (req, res) => {
+router.post('/auth', (req, res) => {
     // POSTデータ取得
     var loginName = req.body.login_name
     var password = req.body.password
@@ -57,10 +40,5 @@ app.post('/auth', (req, res) => {
     res.send(message)
 })
 
-//ctrl + c
-//サーバ待機
-app.listen(PORT,HOST, () => {
-    console.log(HOST)
-    console.log(PORT)
-    console.log('wait...')
-})
+// モジュール化
+module.exports = router
